@@ -38,12 +38,21 @@ This system uses a sophisticated machine learning model built on the ResNet50V2 
 ## Performance Metrics
 - **Training Accuracy**: Improved from 21.2% to 63.3% over 50 epochs.
 - **Validation Accuracy**: Increased from 23.7% to 66.6%.
+![Alt text](web/images/accuracy.png)
+![Alt text](web/images/losses.png)
 
-<p align="center">
-  <img src="images/accuracy.png" alt="Training and Validation Graphs" style="width: 45%;">
-  <img src="images/losses.png" alt="Losses Graph" style="width: 45%;">
-</p>
+## Some Results
+![Alt text](web/images/predicted_emo/combined_angry.jpg)
+![Alt text](web/images/predicted_emo/combined_fear.jpg)
+![Alt text](web/images/predicted_emo/combined_neutral.jpg)
+![Alt text](web/images/predicted_emo/combined_happy.jpg)
+![Alt text](web/images/predicted_emo/combined_None.jpg)
+![Alt text](web/images/predicted_emo/combined_surprise.jpg)
+![Alt text](web/images/predicted_emo/combined_sad.jpg)
 
+## Videos
+<video src="web/images/predicted_emo/v1.mp4" controls title="Real Time"></video>
+<video src="Demo%20of%20work.mp4" controls title="Real Time 2"></video>
 ## Future Enhancements
 To enhance model performance and robustness:
 - **Dataset Expansion**: Include a broader range of facial expressions and real-world conditions.
