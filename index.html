@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Final Project: Facial Recognition and Emotion classification</title>
+</head>
+<body>
+<h3>Final Project: Facial Recognition and Emotion classification</h3>
+<p><strong>Date:</strong> 30-04-2024</p>
+<p><strong>Author:</strong> Rizwan</p>
+
+<h3>Project Description</h3>
+<p>This project involves to build a real-time emotion detection system that utilizes facial recognition technology and machine/deep learning to identify various emotions from a webcam feed. The system provides immediate feedback by displaying the detected emotion through images and names on the screen. Additionally, a score bar graph feature dynamically displays the confidence levels of the detected emotions, enhancing user interaction and understanding of the system's performance. The system model trained for different emotions (emotions = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
+    ) and to modulate the webcam image according to the subject's expression in real time and pre recorded videos.</p>
+
+<h3>Description of the Program Implementation</h3>
+<h3>Real-Time Emotion Detection/classification System</h3>
+
+<h3>Data Source</h3>
+<p>The model is trained on the FER dataset from Kaggle, which includes a comprehensive set of facial expressions categorized into seven classes: angry, disgust, fear, happy, neutral, sad, and surprise.</p>
+<p>For more information and to access the dataset, visit <a href="https://www.kaggle.com/datasets/msambare/fer2013">FER2013 Dataset on Kaggle</a>.</p>
+
+<h3>Dataset Composition:</h3>
+<h3>Training Set:</h3>
+<table>
+    <tr>
+        <th>Emotion</th>
+        <th>Number of Images</th>
+    </tr>
+    <tr>
+        <td>Angry</td>
+        <td>3993 images</td>
+    </tr>
+    <tr>
+        <td>Disgust</td>
+        <td>436 images</td>
+    </tr>
+    <tr>
+        <td>Fear</td>
+        <td>4103 images</td>
+    </tr>
+    <tr>
+        <td>Happy</td>
+        <td>7164 images</td>
+    </tr>
+    <tr>
+        <td>Neutral</td>
+        <td>4982 images</td>
+    </tr>
+    <tr>
+        <td>Sad</td>
+        <td>4938 images</td>
+    </tr>
+    <tr>
+        <td>Surprise</td>
+        <td>3205 images</td>
+    </tr>
+</table>
+
+<h3>Test Set:</h3>
+<table>
+    <tr>
+        <th>Emotion</th>
+        <th>Number of Images</th>
+    </tr>
+    <tr>
+        <td>Angry</td>
+        <td>960 images</td>
+    </tr>
+    <tr>
+        <td>Disgust</td>
+        <td>111 images</td>
+    </tr>
+    <tr>
+        <td>Fear</td>
+        <td>1018 images</td>
+    </tr>
+    <tr>
+        <td>Happy</td>
+        <td>1825 images</td>
+    </tr>
+    <tr>
+        <td>Neutral</td>
+        <td>1216 images</td>
+    </tr>
+    <tr>
+        <td>Sad</td>
+        <td>1139 images</td>
+    </tr>
+    <tr>
+        <td>Surprise</td>
+        <td>797 images</td>
+    </tr>
+</table>
+<h3>Dataset Images</h3>
+    
+<h3>Test Images</h3>
+<div class="gallery">
+    <h3>Angry</h3>
+    <img src="images/test/angry.png" >
+    <h3>Disgust</h3>
+    <img src="images/test/disgust.png">
+    <h3>Happy</h3>
+    <img src="images/test/happy.png" >
+    <h3>Fear</h3>
+    <img src="images/test/fear.png" >
+    <h3>Neutral</h3>
+    <img src="images/test/neutral.png" >
+    <h3>Sad</h3>
+    <img src="images/test/sad.png">
+    <h3>Surprise</h3>
+    <img src="images/test/surprise.png" >
+</div>
+
+<h3>Train Images</h3>
+<div class="gallery">
+    <div class="gallery">
+        <h3>Angry</h3>
+        <img src="images/train/angry.png" >
+        <h3>Disgust</h3>
+        <img src="images/train/disgust.png">
+        <h3>Happy</h3>
+        <img src="images/train/happy.png" >
+        <h3>Fear</h3>
+        <img src="images/train/fear.png" >
+        <h3>Neutral</h3>
+        <img src="images/train/neutral.png" >
+        <h3>Sad</h3>
+        <img src="images/train/sad.png">
+        <h3>Surprise</h3>
+        <img src="images/train/surprise.png" ></div>
+    
+</div>
+<p>This dataset provides a balanced representation of various emotional states, enabling the model to learn and predict with higher accuracy and robustness.</p>
+
+
+<h3>Facial Recognition</h3>
+<p>I utilize OpenCV's Haar Cascade detector for facial recognition within the video feed of the application due to its speed and efficiency, which are critical for real-time applications. The Haar Cascade detector operates using an algorithm trained with numerous positive images (images containing faces) and negative images (images without faces). This training helps the detector to recognize facial patterns based on simple yet effective classifiers that identify features such as lines, borders, and vertices in an image. These features are organized into multiple stages within the detection process to enhance the algorithm's performance, ensuring quick and accurate face detection suitable for processing live video streams. This method is chosen because it provides a robust foundation for identifying faces quickly, which is essential for the subsequent steps of emotion detection in real-time.
+</p>
+
+<h3>Pre-Trained Emotion Detection/classification  Model</h3>
+<p>The system utilizes a sophisticated machine learning model built on top of the ResNet50V2 architecture, pre-trained on ImageNet. The model is adapted for emotion detection with the following configuration:</p>
+<ul>
+    <li><strong>Input Shape:</strong>  every image is carefully resized to a uniform dimension of 224 by 224 pixels with three color channels, ensuring that they precisely align with the model's required input specifications.</li>
+    <li><strong>Model Architecture:</strong>
+        <ul>
+            <li><strong>Base Model:</strong> ResNet50V2, excluding the top layer, to leverage learned features while allowing customization for the specific task of emotion detection.</li>
+            <li><strong>Additional Layers:</strong> Include Batch Normalization for faster convergence, Global Average Pooling2D to reduce spatial dimensions, and several Dense layers with Dropout for regularization.</li>
+            <li><strong>Output Layer:</strong> A Dense layer with 7 units and a softmax activation function to classify the seven different emotions.</li>
+        </ul>
+    </li>
+    <h3>Model</h3>
+    <img src="images/model.PNG" >
+    <li><strong>Optimization and Compilation:</strong>
+        <ul>
+            <li><strong>Optimizer:</strong> Adamax with a learning rate of 0.0001, chosen for its robust performance in handling sparse gradients.</li>
+            <li><strong>Loss Function:</strong> Categorical crossentropy, ideal for multi-class classification tasks.</li>
+            <li><strong>Metrics:</strong> I use accuracy as a metric to monitor how well the model is performing throughout the training process. </ul>
+    </li>
+</ul>
+<p>The model is trained to classify emotions as angry, disgust, fear, happy, neutral, sad, and surprise based on the features extracted from detected faces.</p>
+
+<h2>Training and Validation Performance Over 50 Epochs:</h2>
+    <p><strong>Training Loss:</strong> Started at 1.921 and showed a consistent decrease over 50 epochs, ending at 0.923, indicating good convergence.</p>
+    <p><strong>Validation Loss:</strong> Reduced from 1.848 to 0.941, aligning closely with the training loss, which suggests that the model is generalizing well without significant overfitting.</p>
+    <p><strong>Training Accuracy:</strong> As I progressed with the training, I noticed a consistent improvement in how well the model could identify different emotions. The training accuracy climbed gradually from 21.2% to a promising 63.3%. This improvement shows that the model is getting better at recognizing emotions correctly the more it learns.</p>
+    <p><strong>Validation Accuracy:</strong> On the validation side, I observed that the accuracy increased from 23.7% to 66.6%, which is slightly higher than what I achieved during training. This is encouraging as it reflects the model's robust performance on data it hasn't seen before, suggesting that it's not just memorizing the training examples but genuinely understanding how to interpret emotions.</p>
+    <h3>Training&Losses</h3>
+    <img src="images/accuracy.png" >
+    <img src="images/losses.png" >
+    <h2>Detailed Classification Report:</h2>
+    <p><strong>Precision, Recall, and F1-Score:</strong></p>
+    <ul>
+        <li>The model shows varied performance across the classes with particularly strong results for 'happy' (F1-score of 0.86) and 'surprise' (F1-score of 0.77).</li>
+        <li>Weakest performance observed in 'fear' (F1-score of 0.40), indicating potential difficulties in distinguishing subtler emotional expressions.</li>
+    </ul>
+    <p><strong>Overall Accuracy:</strong> The model achieves an overall accuracy of 65%, a reasonable rate considering the complexity of emotion recognition.</p>
+    <h3>Classification Report</h3>
+    <img src="images/classification_report.PNG" >
+    <h2>Confusion Matrix Insights:</h2>
+    <p>The model shows a good ability to recognize 'happy', 'neutral', and 'surprise' emotions, which have higher precision and recall. Confusions are notable between similar emotional expressions such as 'sad' and 'neutral' or 'angry' and 'fear', which are often misclassified as each other, suggesting areas for further tuning and training.</p>
+
+    <h2>ROC Curve and AUC:</h2>
+    <p>The Area Under the Curve (AUC) for each emotion provides insight into the model's ability to discriminate between the positive class and the negative classes for that emotion.</p>
+    <ul>
+        <li>High AUC values for 'happy' (0.91) and 'surprise' (0.88) reflect strong discriminative performance.</li>
+        <li>Lower AUC for 'fear' (0.63) indicates a need for improvement in distinguishing this emotion accurately.</li>
+    </ul>
+    <h3>Area Under the Curve</h3>
+    <img src="images/roc.png" >
+
+    <h3>Dynamic Visualization</h3>
+<p>Upon detecting a face and classifying the emotion, the system overlays an appropriate emotion image directly on the live video feed. The image is positioned just above the detected face. The name of the detected emotion is displayed to the right of the image, providing immediate and clear visual feedback.</p>
+
+<h3>Score Bar Graph Feature</h3>
+<p>Alongside the live emotion detection, a score bar graph is displayed on the side of the video feed. This graph shows the confidence levels of the predicted emotions for each detected face. Each emotion is represented by a unique color, and the length of each bar correlates with the confidence level of that particular emotion detection. Numeric scores are also displayed beside each bar for precision.</p>
+<h3>Prediction Results</h3>
+<video controls autoplay muted width="640">
+    <source src="images/predicted_emo/v1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="gallery">
+    <div class="gallery">
+        <h3>Angry</h3>
+        <img src="images/predicted_emo/combined_angry.jpg" >
+        <h3>Happy</h3>
+        <img src="images/predicted_emo/combined_happy.jpg" >
+        <h3>Fear</h3>
+        <img src="images/predicted_emo/combined_fear.jpg" >
+        <h3>Neutral</h3>
+        <img src="images/predicted_emo/combined_neutral.jpg" >
+        <h3>Sad</h3>
+        <img src="images/predicted_emo/combined_sad.jpg" >
+        <h3>Surprise</h3>
+        <img src="images/predicted_emo/combined_surprise.jpg" >
+    </div>
+    
+</div>
+
+
+<h2>Reflecting on the Model's Performance</h2>
+<p>As I review the results from training and validation over 50 epochs, I’m encouraged by the clear progress the model has made. The initial training loss was quite high, but it pleasingly dropped to under 1.0, indicating that the model is learning effectively and improving over time. Similarly, the validation loss decreased alongside the training loss, which reassures me that the model isn't just memorizing the training data but is genuinely learning to generalize from it. The accuracy improvements, from just over 20% to more than 60% in both training and validation, are particularly satisfying. It shows that the model is becoming more adept at correctly identifying emotions, which is the heart of what I want it to do.</p>
+
+<h2>Analyzing the Detailed Performance</h2>
+<p>The classification report provided some mixed insights. I was to see high scores for emotions like 'happy' and 'surprise,' but the model's struggle with 'fear' gives me pause. This particular emotion lagged significantly behind others, which might be due to the subtlety and complexity of fear expressions or perhaps an imbalance in the training examples for this emotion. Overall, while the accuracy stands at 65%, it’s a reminder that there’s still substantial room for growth, especially in ensuring that all emotions are recognized with similar proficiency.</p>
+
+<h2>Challenges and Limitations</h2>
+    <p>I encountered several challenges that highlighted the limitations of the current technology and approach.</p>
+    <p>One notable challenge was the difficulty in accurately detecting subtler emotions, particularly 'fear.' This emotion often manifests in less pronounced facial expressions compared to more overt emotions like 'happiness' or 'surprise,' which made it harder for the model to recognize and classify accurately. This issue was reflected in the lower F1-score for fear, indicating a need for further refinement in the model’s ability to discern these subtler nuances.</p>
+    <p>Additionally, the model faced significant challenges related to occlusions, variations in lighting, and face orientations. In real-world scenarios, faces are not always perfectly visible; they might be partially covered by objects, hair, or even the angle at which the face is turned away from the camera. Such occlusions significantly degrade the model’s performance because crucial facial features necessary for emotion recognition might be obscured.</p>
+    <p>Lighting variation also poses a considerable challenge. The model was trained primarily on images that do not widely vary in lighting conditions. However, in practical applications, varying lighting can change the appearance of facial features dramatically, potentially leading to incorrect emotion predictions. Similarly, different face orientations can introduce additional complexity. The model performs best with frontal face images, and as the angle of the face increases relative to the camera, the accuracy of emotion detection decreases.</p>
+    <p>The varying performance across different emotions suggests that the model may not yet understand the finer nuances of certain facial expressions. Moreover, practical issues such as occlusions and variations in face orientation pose additional challenges, which could hinder the model’s effectiveness in real-world scenarios where conditions are rarely ideal.</p>
+
+<h2>Future Enhancements</h2>
+    <p>Looking forward, I'm keen on adopting a multi-faceted strategy to enhance the model's capabilities. Enriching the dataset, especially for those emotions that the model struggles with, will be crucial. I believe that using a mix of real and synthetically augmented data could help improve the model’s exposure to a wider range of expressions. Exploring more sophisticated neural architectures and considering ensemble techniques might also unlock new levels of performance. Furthermore, integrating other types of data, like audio cues, could offer a more rounded approach to understanding emotions. This holistic strategy is not just about refining a tool but about deepening our understanding of human expressions in all their complexity.</p>
+    <p>One critical area for improvement is the expansion and enhancement of the dataset. Currently, the diversity in facial expressions, especially for subtler emotions like fear, is limited. I suggest enriching the dataset with a broader range of facial expressions captured under various real-world conditions. This could involve collecting images from a wider demographic, including different ages, ethnicities, and underrepresented groups, to ensure the model is trained on a dataset that mirrors the diversity of the global population. Additionally, including images with varying degrees of occlusion, lighting, and facial orientations could significantly improve the model’s robustness and accuracy.</p>
+
+    <p>Another exciting direction is the integration of multimodal data to enhance emotion detection capabilities. By incorporating audio cues alongside visual data, the system could leverage the tone, pitch, and intensity of a person’s voice as complementary information to the facial expressions. This multimodal approach would likely capture a more accurate and holistic view of a person's emotional state, particularly in complex scenarios where facial expressions alone may be misleading or insufficient.</p>
+
+    <p>Lastly, exploring more advanced neural network architectures and considering ensemble models could also offer substantial benefits. Techniques such as deep convolutional networks, recurrent neural networks, or even attention-based models could provide new pathways to better handle the intricacies of emotion recognition. Ensemble models, which combine the predictions from multiple models to improve accuracy, could also be employed to enhance the robustness of predictions across various conditions and scenarios.</p>
+
+    <p>In sum, by addressing these areas—expanding the dataset, incorporating multimodal data, and leveraging cutting-edge neural network technologies—we can significantly enhance the system’s performance. These improvements not only aim to boost the technical capabilities of our models but also strive to make emotion detection more inclusive, accurate, and applicable in diverse settings, thus bridging the gap between human emotional complexity and AI understanding.</p>
+    <h1>Conclusion of the Emotion Detection Project</h1>
+    <p>As I reach the conclusion of this presentation, I’d like to recap the significant strides we've made with this emotion detection project. From the outset, the main objective was to enhance human-computer interaction by enabling computers to accurately interpret human emotions. I believe we have made substantial progress toward this goal. The model’s ability to detect and analyze emotional expressions in real-time has not only demonstrated strong technical performance but has also laid the groundwork for numerous practical applications. Whether in enhancing customer service interactions or supporting mental health assessments, the potential impacts of this technology in real-world settings are vast and promising.</p>
+</body>
+</html>
