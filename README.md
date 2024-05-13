@@ -34,14 +34,15 @@ The model is trained on the FER dataset from Kaggle, containing various facial e
 
 ## Model Architecture
 This system uses a sophisticated machine learning model built on the ResNet50V2 architecture, pre-trained on ImageNet and adapted for emotion detection. It includes features such as Batch Normalization, Global Average Pooling2D, and Dense layers with Dropout, culminating in a softmax activation function for classifying the seven emotions.
-![Model Architecture](images/model.PNG)
-
+![Alt text](web/images/model.PNG)
 ## Performance Metrics
 - **Training Accuracy**: Improved from 21.2% to 63.3% over 50 epochs.
 - **Validation Accuracy**: Increased from 23.7% to 66.6%.
 
-![Training and Validation Graphs](images/accuracy.png)
-![Losses Graph](images/losses.png)
+<p align="center">
+  <img src="images/accuracy.png" alt="Training and Validation Graphs" style="width: 45%;">
+  <img src="images/losses.png" alt="Losses Graph" style="width: 45%;">
+</p>
 
 ## Future Enhancements
 To enhance model performance and robustness:
