@@ -53,6 +53,58 @@ This system uses a sophisticated machine learning model built on the ResNet50V2 
 ## Videos
 <video src="web/images/predicted_emo/v1.mp4" controls title="Real Time"></video>
 <video src="Demo%20of%20work.mp4" controls title="Real Time 2"></video>
+
+### Install from Source
+
+```bash
+# Create a Conda environment
+conda create --name facial_emotion_recognition python=3.10
+# Activate the Conda environment
+conda activate facial_emotion_recognition
+
+# Clone the repository
+git clone https://github.com/Rizwanali324/Facial_Recognation-Emotions_Classification.git
+cd facial_emotion_recognition
+
+# Install the project dependencies
+pip install -r requirements.txt
+**Running the Code**
+python code/emotion.py
+
+
+**Converting the Model to TFLite**
+
+python code/converter.py
+
+## Tech used
+<p align="left">  
+  <a href="https://opencv.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="50" height="50"/> 
+  </a> 
+  <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="50" height="50"/>
+  </a> 
+  <a href="https://www.python.org" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="50" height="50"/>
+  </a> 
+  <a href="https://pytorch.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="50" height="50"/>
+  </a>  
+  <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit_learn" width="50" height="50"/>
+  </a>  
+  <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer"> 
+    <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="50" height="50"/>
+  </a>
+  <!-- New additions with provided URLs -->
+  <a href="https://numpy.org/" target="_blank" rel="noreferrer">
+    <img src="https://numpy.org/images/logo.svg" alt="numpy" width="50" height="50"/>
+  </a>
+  <a href="https://keras.io/" target="_blank" rel="noreferrer">
+    <img src="https://keras.io/img/logo.png" alt="keras" width="50" height="50"/>
+  </a>
+</p>
+
 ## Future Enhancements
 To enhance model performance and robustness:
 - **Dataset Expansion**: Include a broader range of facial expressions and real-world conditions.
