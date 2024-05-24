@@ -1,4 +1,4 @@
-# Final Project: Facial Recognition and Emotion Classification
+# Facial Recognition and Emotion Classification
 
 **Date**: 30-04-2024  
 **Author**: Rizwan
@@ -75,7 +75,7 @@ python code/emotion.py
 **Converting the Model to TFLite**
 
 python code/converter.py
-
+```
 ## Tech used
 <p align="left">  
   <a href="https://opencv.org/" target="_blank" rel="noreferrer"> 
