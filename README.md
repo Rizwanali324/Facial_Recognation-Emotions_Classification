@@ -2,6 +2,10 @@
 
 **Date**: 30-04-2024  
 **Author**: Rizwan
+## Video Demo
+Check out our video demonstration below:
+
+[![Watch the video](https://img.youtube.com/vi/DWdOpYOmmo0/0.jpg)](https://youtu.be/DWdOpYOmmo0)
 
 ## Project Description
 This project builds a real-time emotion detection system using facial recognition and machine learning to identify various emotions from webcam feeds. It displays the detected emotions with corresponding images and names on the screen. Additionally, a dynamic score bar graph shows confidence levels for each detected emotion, enhancing user interaction and system understanding. The system is trained to modulate webcam images based on the subject's expressions in real time and pre-recorded videos using a variety of emotions including 'angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', and 'surprise'.
